@@ -1,14 +1,61 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Home
     </ion-title>
+
+    <ion-buttons start>
+      <button ion-button icon-only (click)="getData()">
+        <ion-icon name="refresh"></ion-icon>
+        Refresh
+      </button>
+    </ion-buttons>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addData()">
+        <ion-icon name="add"></ion-icon>
+        Add Item
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <h2>Expense List</h2>
+  <ion-list>
+    <ion-item-sliding *ngFor="let expense of expenses">
+      <ion-item nopadding>
+        <ion-grid>
+          <ion-row>
+            <!-- <ion-col>
+              {{expense.trandate}}
+            </ion-col> -->
+            <ion-col>
+              {{expense.description}}
+            </ion-col>
+            <ion-col>
+              <span *ngIf="expense.income">
+                <!-- <ion-icon name="add"></ion-icon> -->
+                +
+              </span>
+              <span *ngIf="!expense.income">
+                <!-- <ion-icon name="remove"></ion-icon> -->
+                 -
+              </span>
+              {{expense.amount}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button icon-only color="primary" (click)="editData(expense.rowId)">
+          <ion-icon name="paper"></ion-icon>
+        </button>
+        <button ion-button icon-only color="danger" (click)="deleteData(expense.rowId)">
+          <ion-icon name="trash"></ion-icon>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <p>Balance: {{balance}}</p>
+  </ion-list>
 </ion-content>

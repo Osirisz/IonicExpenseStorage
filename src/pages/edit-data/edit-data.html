@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Expense</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h2>Edit Data</h2>
+  <form (ngSubmit)="updateData()">
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MM/DD/YYYY" [(ngModel)]="data.trandate" name="trandate" required=""></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Description</ion-label>
+      <ion-input type="text" placeholder="Description" [(ngModel)]="data.description" name="description" required=""></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Amount</ion-label>
+      <ion-input type="number" placeholder="Amount" [(ngModel)]="data.amount" name="amount" required=""></ion-input>
+    </ion-item>
+    <ion-input type="hidden" [(ngModel)]="data.rowId" name="rowid"></ion-input>
+    <ion-input type="hidden" [(ngModel)]="data.categoryId" name="categoryId"></ion-input>
+    <button ion-button type="submit" block>Update Data</button>
+  </form>
+</ion-content>
